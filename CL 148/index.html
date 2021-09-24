@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CL 148</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene
+      inspector=""
+      keyboard-shortcuts=""
+      screenshot=""
+      vr-mode-ui=""
+      device-orientation-permission-ui=""
+    >
+      <a-sky src="image/sky.jpg" material="" geometry=""></a-sky>
+      <a-camera
+        position="-6.79976 2 3.15354"
+        camera=""
+        rotation="-12.146705256773423 -29.67921378777649 0"
+        look-controls=""
+        wasd-controls=""
+        data-aframe-inspector-original-camera=""
+      ></a-camera>
+      <!-------------------------------------Lights in the scene----------------------------------------------->
+
+      <!--Ambient-->
+
+      <a-entity light="type: ambient; intensity: 0.5"> </a-entity>
+
+      <a-entity
+        light="intensity: 5; distance: 50; color: yellow; decay: 2; castShadow: true"
+        position="-100 18 20"
+      >
+      </a-entity>
+
+      <!-------------------------------------------Asset Management------------------------------------------->
+      <a-assets timeout="10000">
+        <!--1. <a-asset-item> 3D models--->
+        <!--2. <audio> - Sound files--->
+        <!--3. <img> - Image textures--->
+        <!--4. <video> - Video textures--->
+
+        <a-asset-item
+          src="./3D_models/tiger/scene.gltf"
+          id="tiger"
+        ></a-asset-item>
+
+        <a-asset-item
+          src="./3D_models/giraffe/scene.gltf"
+          id="giraffe"
+        ></a-asset-item>
+
+        <a-asset-item
+          src="3D_models/photographer/scene.gltf"
+          id="photographer"
+        ></a-asset-item>
+
+        <a-asset-item
+          src="./3D_models/tree_for_games/scene.gltf"
+          id="tree"
+        ></a-asset-item>
+      </a-assets>
+
+      <!--------------------------------------GLTF Models----------------------------------------------------------->
+      <!--Tiger-->
+      <a-entity visible="" id="photographer">
+        <a-entity
+          position="-14.12328 0.04908 -14.01736"
+          rotation="-4.977857324096592 28.296666628125966 -0.7247916108404914"
+          gltf-model="./3D_models/photographer/scene.gltf"
+          scale=""
+          shadow=""
+          visible=""
+        >
+        </a-entity>
+      </a-entity>
+
+      <!--giraffe-->
+      <a-entity visible="">
+        <a-entity
+          position="-7.89899 2.3 3.13168"
+          rotation="0 20 0"
+          gltf-model="./3D_models/giraffe/scene.gltf"
+          shadow=""
+          scale="0.5 0.5 0.5"
+        >
+        </a-entity>
+      </a-entity>
+      <!-------------------------------------Circular Plane----------------------------------------------->
+      <a-circle
+        position="-0.4 0 -25"
+        rotation="-90 0 0"
+        radius="100"
+        color="#2E6F10"
+        shadow="recive:true"
+      >
+      </a-circle>
+      <div class="a-loader-title" style="display: none">CL 148</div>
+    </a-scene>
+  </body>
+</html>
