@@ -6,33 +6,30 @@
   </head>
   <body>
     <a-scene
-      inspector=""
-      keyboard-shortcuts=""
-      screenshot=""
-      vr-mode-ui=""
-      device-orientation-permission-ui=""
+      inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
     >
-      <a-sky src="image/sky.jpg" material="" geometry=""></a-sky>
+      <a-sky color="skyblue"></a-sky>
       <a-camera
-        position="-6.79976 2 3.15354"
-        camera=""
-        rotation="-12.146705256773423 -29.67921378777649 0"
+        position="12.0613 1.00787 18.72568"
+        camera="spectator: true; active: false"
+        rotation="0 0 0"
+        id="camera"
         look-controls=""
         wasd-controls=""
-        data-aframe-inspector-original-camera=""
       ></a-camera>
       <!-------------------------------------Lights in the scene----------------------------------------------->
 
-      <!--Ambient-->
+      <!-- Ambient-->
 
       <a-entity light="type: ambient; intensity: 0.5"> </a-entity>
 
-      <a-entity
-        light="intensity: 5; distance: 50; color: yellow; decay: 2; castShadow: true"
-        position="-100 18 20"
-      >
+      <a-entity animation="property: rotation; to: 0 360 0;easing:linear; loop: true; dur: 60000">
+        <a-entity
+          light="intensity: 2; distance: 50; color: yellow; decay: 2; castShadow: true"
+          position="-100 18 20"
+        >
+        </a-entity>
       </a-entity>
-
       <!-------------------------------------------Asset Management------------------------------------------->
       <a-assets timeout="10000">
         <!--1. <a-asset-item> 3D models--->
@@ -40,61 +37,511 @@
         <!--3. <img> - Image textures--->
         <!--4. <video> - Video textures--->
 
-        <a-asset-item
-          src="./3D_models/tiger/scene.gltf"
-          id="tiger"
-        ></a-asset-item>
+        <a-asset-item src="./models/tiger/scene.gltf" id="tiger"></a-asset-item>
 
         <a-asset-item
-          src="./3D_models/giraffe/scene.gltf"
+          src="./models/giraffe/scene.gltf"
           id="giraffe"
         ></a-asset-item>
 
         <a-asset-item
-          src="3D_models/photographer/scene.gltf"
+          src="models/photographer/scene.gltf"
           id="photographer"
         ></a-asset-item>
 
         <a-asset-item
-          src="./3D_models/tree_for_games/scene.gltf"
+          src="./models/tree_for_games/scene.gltf"
           id="tree"
         ></a-asset-item>
       </a-assets>
 
       <!--------------------------------------GLTF Models----------------------------------------------------------->
-      <!--Tiger-->
-      <a-entity visible="" id="photographer">
-        <a-entity
-          position="-14.12328 0.04908 -14.01736"
+
+      <!--photographer-->
+      <a-entity id="photographer"
+        ><a-entity
+          id="person"
+          position="-19.41916 -0.1907 -14.98867"
           rotation="-4.977857324096592 28.296666628125966 -0.7247916108404914"
-          gltf-model="./3D_models/photographer/scene.gltf"
-          scale=""
+          gltf-model="./models/photographer/scene.gltf"
+          scale="0.272 0.448 0.617"
           shadow=""
-          visible=""
+        >
+        </a-entity>
+        <a-entity
+          id="P_tree-1"
+          position="-19.49412 -0.11023 -13.83146"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -112.80851436771752 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-7"
+          position="-18.34497 -0.11023 -5.9706"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -158.0601480693548 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-8"
+          position="-16.07704 0 -17.00406"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 173.56152121661924 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-9"
+          position="-20.09121 0 -4.26679"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-10"
+          position="-19.31544 0 -2.26966"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-11"
+          position="-20.65315 0 -17.5774"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-3"
+          position="-20.81421 -0.11023 -12.78265"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -44.42370968767325 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-4"
+          position="-20.59787 -0.11023 -11.15871"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 132.19282249258353 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-5"
+          position="-18.28449 -0.11023 -9.77894"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 115.04534159990826 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-6"
+          position="-19.8459 -0.11023 -7.9447"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 158.21140892726933 0"
+        >
+        </a-entity
+        ><a-entity
+          id="P_tree-2"
+          position="-18.45672 -0.11023 -15.50351"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        >
+        </a-entity>
+        <a-entity>
+          <!--giraffe-->
+          <a-entity id="giraffeStack">
+            <a-entity
+              position="-8.72261 2.3 8.56204"
+              rotation="0 7.837489679594531 0"
+              gltf-model="./models/giraffe/scene.gltf"
+              shadow=""
+              scale="0.5 0.5 0.5"
+              id="giraffe"
+            >
+            </a-entity
+            ><a-entity
+              position="-14.2983 2.3 9.36228"
+              rotation="0 -19.29263487764508 0"
+              gltf-model="./models/giraffe/scene.gltf"
+              shadow=""
+              scale="0.5 0.5 0.5"
+              id="giraffe-5"
+            >
+            </a-entity
+            ><a-entity
+              position="-15.97972 2.3 10.04892"
+              rotation="0 21.63030268177884 0"
+              gltf-model="./models/giraffe/scene.gltf"
+              shadow=""
+              scale="0.5 0.5 0.5"
+              id="giraffe-4"
+            >
+            </a-entity>
+            <a-entity
+              position="-2.82386 2.3 10.17546"
+              rotation="0 -34.11333416429408 0"
+              gltf-model="./models/giraffe/scene.gltf"
+              shadow=""
+              scale="0.5 0.5 0.5"
+              id="giraffe-2"
+            >
+            </a-entity>
+            <a-entity
+              position="-5.47309 2.3 8.17862"
+              rotation="0 9.82106956633744 0"
+              gltf-model="./models/giraffe/scene.gltf"
+              shadow=""
+              scale="0.5 0.5 0.5"
+              id="giraffe-3"
+            >
+            </a-entity>
+          </a-entity>
+
+          <!-- tree -->
+          <a-entity id="treeStack">
+            <a-entity
+              id="tree"
+              position="-9.90068 -0.11023 13.27867"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 90 0"
+            ></a-entity
+            ><a-entity
+              id="tree-7"
+              position="-9.99786 -0.11023 17.39088"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 90 0"
+            ></a-entity>
+
+            <a-entity
+              id="tree-1"
+              position="-12.97227 -0.11023 12.69898"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity
+            ><a-entity
+              id="tree-12"
+              position="-16.66192 -0.11023 12.74429"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity
+            ><a-entity
+              id="tree-13"
+              position="-19.40509 -0.11023 12.6257"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity
+            ><a-entity
+              id="tree-5"
+              position="-15.3433 -0.11023 16.46537"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity
+            ><a-entity
+              id="tree-11"
+              position="-18.38036 -0.11023 17.01597"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity
+            ><a-entity
+              id="tree-14"
+              position="-20.74532 -0.11023 14.34369"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity
+            ><a-entity
+              id="tree-6"
+              position="-12.62226 -0.11023 17.00032"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity>
+
+            <a-entity
+              id="tree-2"
+              position="-6.86768 -0.11023 12.69898"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity
+            ><a-entity
+              id="tree-8"
+              position="-6.86768 -0.11023 16.95898"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 -45 0"
+            ></a-entity>
+
+            <a-entity
+              id="tree-4"
+              position="-0.82751 -0.11023 13.18665"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 90 0"
+            ></a-entity
+            ><a-entity
+              id="tree-10"
+              position="-0.82751 -0.11023 16.05859"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+              rotation="0 90 0"
+            ></a-entity>
+
+            <a-entity
+              id="tree-3"
+              position="-3.97748 -0.11023 13.30498"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+            ></a-entity
+            ><a-entity
+              id="tree-9"
+              position="-3.97748 -0.11023 16.68946"
+              gltf-model="./models/tree_for_games/scene.gltf"
+              shadow=""
+              scale="0.005 0.005 0.005"
+            ></a-entity>
+          </a-entity>
+
+          <!-------------------------------------Plane----------------------------------------------->
+          <a-plane
+            position=""
+            src="./image/grass.jpg"
+            material="side: double; blending: multiply"
+            scale="43.71553 40.81351 1"
+            rotation="-90 0 0"
+            id="plane"
+            geometry=""
+          ></a-plane>
+          <div class="a-loader-title" style="display: none">CL 148</div>
+        </a-entity></a-entity
+      >
+
+      <!--giraffe-->
+      <a-entity id="giraffeStack">
+        <a-entity
+          position="-8.72261 2.3 8.56204"
+          rotation="0 7.837489679594531 0"
+          gltf-model="./models/giraffe/scene.gltf"
+          shadow=""
+          scale="0.5 0.5 0.5"
+          id="giraffe"
+        >
+        </a-entity
+        ><a-entity
+          position="-14.2983 2.3 9.36228"
+          rotation="0 -19.29263487764508 0"
+          gltf-model="./models/giraffe/scene.gltf"
+          shadow=""
+          scale="0.5 0.5 0.5"
+          id="giraffe-5"
+        >
+        </a-entity
+        ><a-entity
+          position="-15.97972 2.3 10.04892"
+          rotation="0 21.63030268177884 0"
+          gltf-model="./models/giraffe/scene.gltf"
+          shadow=""
+          scale="0.5 0.5 0.5"
+          id="giraffe-4"
+        >
+        </a-entity>
+        <a-entity
+          position="-2.82386 2.3 10.17546"
+          rotation="0 -34.11333416429408 0"
+          gltf-model="./models/giraffe/scene.gltf"
+          shadow=""
+          scale="0.5 0.5 0.5"
+          id="giraffe-2"
+        >
+        </a-entity>
+        <a-entity
+          position="-5.47309 2.3 8.17862"
+          rotation="0 9.82106956633744 0"
+          gltf-model="./models/giraffe/scene.gltf"
+          shadow=""
+          scale="0.5 0.5 0.5"
+          id="giraffe-3"
         >
         </a-entity>
       </a-entity>
 
-      <!--giraffe-->
-      <a-entity visible="">
+      <!-- tree -->
+      <!-- <a-entity id="treeStack">
         <a-entity
-          position="-7.89899 2.3 3.13168"
-          rotation="0 20 0"
-          gltf-model="./3D_models/giraffe/scene.gltf"
+          id="tree"
+          position="-9.90068 -0.11023 13.27867"
+          gltf-model="./models/tree_for_games/scene.gltf"
           shadow=""
-          scale="0.5 0.5 0.5"
-        >
-        </a-entity>
-      </a-entity>
-      <!-------------------------------------Circular Plane----------------------------------------------->
-      <a-circle
-        position="-0.4 0 -25"
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        ></a-entity
+        ><a-entity
+          id="tree-7"
+          position="-9.99786 -0.11023 17.39088"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        ></a-entity>
+
+        <a-entity
+          id="tree-1"
+          position="-12.97227 -0.11023 12.69898"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity
+        ><a-entity
+          id="tree-12"
+          position="-16.66192 -0.11023 12.74429"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity
+        ><a-entity
+          id="tree-13"
+          position="-19.40509 -0.11023 12.6257"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity
+        ><a-entity
+          id="tree-5"
+          position="-15.3433 -0.11023 16.46537"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity
+        ><a-entity
+          id="tree-11"
+          position="-18.38036 -0.11023 17.01597"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity
+        ><a-entity
+          id="tree-14"
+          position="-20.74532 -0.11023 14.34369"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity
+        ><a-entity
+          id="tree-6"
+          position="-12.62226 -0.11023 17.00032"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity>
+
+        <a-entity
+          id="tree-2"
+          position="-6.86768 -0.11023 12.69898"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity
+        ><a-entity
+          id="tree-8"
+          position="-6.86768 -0.11023 16.95898"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 -45 0"
+        ></a-entity>
+
+        <a-entity
+          id="tree-4"
+          position="-0.82751 -0.11023 13.18665"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        ></a-entity
+        ><a-entity
+          id="tree-10"
+          position="-0.82751 -0.11023 16.05859"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+          rotation="0 90 0"
+        ></a-entity>
+
+        <a-entity
+          id="tree-3"
+          position="-3.97748 -0.11023 13.30498"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+        ></a-entity
+        ><a-entity
+          id="tree-9"
+          position="-3.97748 -0.11023 16.68946"
+          gltf-model="./models/tree_for_games/scene.gltf"
+          shadow=""
+          scale="0.005 0.005 0.005"
+        ></a-entity>
+      </a-entity> -->
+
+      <!-------------------------------------Plane----------------------------------------------->
+      <a-plane
+        position=""
+        src="./image/grass.jpg"
+        material="side: double; blending: multiply"
+        scale="43.71553 40.81351 1"
         rotation="-90 0 0"
-        radius="100"
-        color="#2E6F10"
-        shadow="recive:true"
-      >
-      </a-circle>
+        id="plane"
+        geometry=""
+      ></a-plane>
       <div class="a-loader-title" style="display: none">CL 148</div>
     </a-scene>
   </body>

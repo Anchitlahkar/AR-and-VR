@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CL 150</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color: grey">
+      <a-camera
+        position="-36.0737 7.06025 -2.93131"
+        camera=""
+        rotation="0.1386557864216592 -91.51854861624639 -0.4073729923380153"
+        look-controls=""
+        wasd-controls=""
+        data-aframe-inspector-original-camera=""
+        id="camera"
+      ></a-camera>
+
+      <!-- importing models -->
+      <a-assets>
+        <a-asset-item
+          id="table-obj"
+          src="models\table\tinker.obj"
+        ></a-asset-item>
+        <a-asset-item id="table-mtl" src="models\table\obj.mtl"></a-asset-item>
+      </a-assets>
+
+      <a-entity
+        obj-model="obj: #table-obj; mtl: #table-mtl"
+        position="5 0 0"
+        scale="0.1 0.1 0.1"
+        rotation="-90 -40 0"
+      ></a-entity>
+
+      <!-- walls -->
+      <a-box
+        position="14.73895 7.96868 -0.03985"
+        color="yellow"
+        material=""
+        geometry=""
+        id="wall1"
+        scale="1.0 23.8 30"
+      ></a-box>
+
+      <a-box
+        position="-0.00236 7.9686 14.77549"
+        color="yellow"
+        material=""
+        geometry=""
+        id="wall-2"
+        scale="1 23.8 30"
+        rotation="0 90 0"
+      ></a-box>
+
+      <!-- floor -->
+      <a-circle
+        id="floor"
+        position="-0.4 -0.76 -25"
+        rotation="-90 0 0"
+        radius="100"
+        shadow="receive: true"
+        visible="true"
+        color="white"
+      >
+      </a-circle>
+    </a-scene>
+  </body>
+</html>
