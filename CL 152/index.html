@@ -1,13 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CL 152</title>
+    <title>CL 151</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="move.js"></script>
   </head>
   <body>
-    <a-scene background="color: #FAFAFA">
-      <a-camera position="0 0 5"></a-camera>
-      <a-entity></a-entity>
+    <a-scene background="color: #000000">
+      <a-camera
+        position="0 1.92537 5"
+        rotation="-20.526213010561744 0 0"
+        
+      ></a-camera>
+
+      <a-entity log="message: log"></a-entity>
+
+      <!-- <a-entity>
+        <a-box position="0 0 0" boxonclicked></a-box>
+      </a-entity> -->
+
+      <a-entity id="rocket" position="0 1 0" move>
+        <a-cone
+          position="0 12.39033 0"
+          material="color: green"
+          geometry=""
+          scale="1 2.24562 1"
+          id="top"
+        ></a-cone>
+        <a-cylinder
+          position="0 8.28746 0"
+          material="color: yellow"
+          geometry=""
+          scale="1 6 1"
+          id="mid"
+        ></a-cylinder>
+
+        <a-cylinder
+          position="0 2.28287 0"
+          material="color: red"
+          geometry=""
+          scale="1 6 1"
+          id="low"
+          fallDown
+        >
+          <a-cone
+            id="sidewings-1"
+            rotation="0 0 -0.57"
+            position="0.13409 -0.384 0.97668"
+            material="color: #0400ff"
+            geometry=""
+            scale="1 0.475 1"
+          ></a-cone>
+
+          <a-cone
+            id="sidewings-2"
+            rotation="0 0 -0.5695200483600382"
+            position="-0.86047 -0.38437 -0.52931"
+            material="color: #0400ff"
+            geometry=""
+            scale="1 0.47527 1"
+          ></a-cone>
+
+          <a-cone
+            id="sidewings-3"
+            rotation="0 0 -0.5695200483600382"
+            position="0.90616 -0.38437 -0.52931"
+            material="color: #0400ff"
+            geometry=""
+            scale="1 0.47527 1"
+          ></a-cone>
+        </a-cylinder>
+      </a-entity>
+      <!--Earth-->
+      <a-entity
+        position="0 0 0"
+        rotation="0 0 0"
+        animation="property: rotation; to: 0 360 0;easing:linear; loop: true; dur: 1000000"
+      >
+        <a-sphere
+          position="0 -10 10"
+          radius="10"
+          src="https://cdn.glitch.com/850dd813-e5e9-4dd0-9751-38981ae74172%2Fearth.jpg?v=1604312404511"
+        >
+        </a-sphere>
+      </a-entity>
     </a-scene>
   </body>
 </html>
