@@ -1,5 +1,8 @@
 AFRAME.registerComponent("tour", {
-  schema: {},
+  schema: {
+    state: { type: "string", default: "places-list" },
+    selectedCard: { type: "string", default: "#card1" },
+  },
 
   init: function () {
     // Do something when component first attached.
@@ -7,27 +10,51 @@ AFRAME.registerComponent("tour", {
     this.createCards();
   },
 
+  hideEl: function (elList) {
+    elList.map((el) => {
+      el.setAttribute("visible", false);
+    });
+  },
+
+  showView: function () {
+    const { selectedCard } = this.data;
+    const skyEl = document.querySelector("#main-container");
+    skyEl.setAttribute("material", {
+      src: `./assets/360_images/${selectedCard}/place-0.jpg`,
+      color: "#fff",
+    });
+  },
+
+  tick: function () {
+    const {state} = this.el.getAttribute("tour")
+
+    if(state === "view"){
+        this.hideEl([this.placesContainer])
+        this.showView()
+    }
+  },
+
   createCards: function () {
     const thumbNailsRef = [
       {
         id: "taj-mahal",
         title: "Taj Mahal",
-        url: "./assets/taj_mahal.png",
+        url: "./assets/images/taj_mahal.png",
       },
       {
         id: "budapest",
         title: "Budapest",
-        url: "./assets/budapest.jpg",
+        url: "./assets/images/budapest.jpg",
       },
       {
         id: "eiffel_tower",
         title: "Eiffel Tower",
-        url: "./assets/eiffel_tower.jpg",
+        url: "./assets/images/eiffel_tower.jpg",
       },
       {
         id: "new-york-city",
         title: "New York City",
-        url: "./assets/new_york_city.png",
+        url: "./assets/images/new_york_city.png",
       },
     ];
     let previousXPosition = -60;
@@ -50,7 +77,7 @@ AFRAME.registerComponent("tour", {
       const title = this.createTitleEl(position, item);
       borderEl.appendChild(title);
 
-      this.placesContainer.appendChild(borderEl)
+      this.placesContainer.appendChild(borderEl);
     }
   },
 
@@ -68,6 +95,7 @@ AFRAME.registerComponent("tour", {
       color: "#00bcd4",
       opacity: 0.4,
     });
+    entityEl.setAttribute("cursor-listener", {});
     return entityEl;
   },
 
