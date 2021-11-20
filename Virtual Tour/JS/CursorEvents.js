@@ -37,6 +37,10 @@ AFRAME.registerComponent("cursor-listener", {
       if (selectedItemId) {
         const el = document.querySelector(`#${selectedItemId}`);
         const id = el.getAttribute("id");
+
+        console.log(el)
+        console.log(id)
+        
         if (id === selectedItemId) {
           el.setAttribute("material", {
             color: "#00bcd4",
@@ -68,6 +72,31 @@ AFRAME.registerComponent("cursor-listener", {
           });
         }
       }
+      if (state === "view") {
+        this.handleViewState();
+      }
+      if (state === "change-view") {
+        this.handleViewState();
+      }
     });
+  },
+
+  handleViewState: function () {
+    const el = this.el;
+    const id = el.getAttribute("id");
+
+    const placesContainer = document.querySelector("#places-container");
+    const { selectedItemId } = placesContainer.getAttribute("cursor-listener");
+    const sideViewPlacesID = ["place-1", "place-2", "place-3", "place-4"];
+
+    if (sideViewPlacesID.includes(id)) {
+      placesContainer.setAttribute("tour", { state: "change-view" });
+
+      const skyEl = document.querySelector("#main-container");
+      skyEl.setAttribute("material", {
+        src: `./assets/360_images/${selectedItemId}/${id}.jpg`,
+        color: "#fff",
+      });
+    }
   },
 });
