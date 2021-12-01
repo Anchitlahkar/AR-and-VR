@@ -9,7 +9,8 @@
   <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
-  <script src="./shoot.js"></script>
+  <script src="./JS/shoot.js"></script>
+  <script src="./JS/gameObjects.js"></script>
 </head>
 
 <body>
@@ -19,7 +20,14 @@
     <a-assets>
       <a-asset-item id="shooter" src="./models/shooter/gun.gltf"></a-asset-item>
 
+      <audio id="shoot" src=""></audio>
+
     </a-assets>
+
+    <!--A Frame Environment-->
+    <a-entity id="environment" environment="preset: egypt; skyType: gradient; lighting: point">
+
+    </a-entity>
 
     <!--Light-->
     <a-entity light="type: ambient; color: white; intensity:0.5"></a-entity>
@@ -34,6 +42,9 @@
 
     <!--Bullets-->
     <a-entity bullets></a-entity>
+
+    <!--Game Objects-->
+    <a-entity wire-fence></a-entity>
 
     <!--Ground-->
     <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="#FBF2D4"
