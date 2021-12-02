@@ -57,8 +57,8 @@ AFRAME.registerComponent("wire-fence", {
       );
 
       //set the rotation
-      wireFence3.setAttribute("rotation",{x:0,y:90,z:0})
-      wireFence4.setAttribute("rotation",{x:0,y:90,z:0})
+      wireFence3.setAttribute("rotation", { x: 0, y: 90, z: 0 });
+      wireFence4.setAttribute("rotation", { x: 0, y: 90, z: 0 });
 
       //set the physics body
       wireFence1.setAttribute("static-body", {});
@@ -74,16 +74,42 @@ AFRAME.registerComponent("wire-fence", {
       sceneEl.appendChild(wireFence4);
     }
   },
+});
 
-  update: function () {
-    // Do something when component's data is updated.
+AFRAME.registerComponent("boxes", {
+  schema: {
+    height: { type: "number", default: 3 },
+    width: { type: "number", default: 3 },
+    depth: { type: "number", default: 3 },
   },
 
-  remove: function () {
-    // Do something the component or its entity is detached.
-  },
+  init: function () {
+    // Do something when component first attached.
+    for (var i = 0; i < 20; i++) {
+      var box = document.createElement("a-entity");
+      box.setAttribute("id", "box" + i);
 
-  tick: function (time, timeDelta) {
-    // Do something on every scene tick or frame.
+      posX = Math.random() * 200 - 100;
+      posY = 1.5;
+      posZ = Math.random() * 200 - 100;
+
+      var position = { x: posX, y: posY, z: posZ };
+      box.setAttribute("position", position);
+      box.setAttribute("geometry", {
+        primitive: "box",
+        height: this.data.height,
+        width: this.data.width,
+        depth: this.data.depth,
+      });
+
+      box.setAttribute("material", {
+        src: "./images/boxtexture1.jpg",
+        repeat: "1 1 1",
+      });
+      box.setAttribute("static-body", {});
+
+      var sceneEl = document.querySelector("#scene");
+      sceneEl.appendChild(box);
+    }
   },
 });

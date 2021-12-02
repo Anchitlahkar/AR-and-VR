@@ -11,6 +11,7 @@
 
   <script src="./JS/shoot.js"></script>
   <script src="./JS/gameObjects.js"></script>
+  <script src="./JS/playerMovement.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,8 @@
     <a-assets>
       <a-asset-item id="shooter" src="./models/shooter/gun.gltf"></a-asset-item>
 
-      <audio id="shoot" src=""></audio>
+      <audio id="shoot" src="./sounds/shoot.mp3"></audio>
+      <audio id="footstep" src="./sounds/footStep.mp3"></audio>
 
     </a-assets>
 
@@ -29,13 +31,18 @@
 
     </a-entity>
 
+    <!--Sounds-->
+    <a-entity id="sound1" sound="src:#shoot; poolSize:2; autoplay: false;  volume:1; loop:false"></a-entity>
+    <a-entity id="sound2" sound="src:#footstep; poolSize:2; autoplay: false;  volume:4; loop:false"></a-entity>
+
     <!--Light-->
     <a-entity light="type: ambient; color: white; intensity:0.5"></a-entity>
     <a-entity light="type: directional; color: #EEE; intensity: 1" position="-1 1 0"></a-entity>
 
     <!--Camera and Cursor-->
     <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls="pointerLockEnabled: false">
-      <a-entity id="weapon" gltf-model="#shooter" position="0 -4.4 3" rotation="0 180 0" scale="0.35 1 1">
+      <a-entity id="weapon" gltf-model="#shooter" position="0 -4.4 3" rotation="0 180 0" scale="0.35 1 1"
+        player-movement>
       </a-entity>
       <a-cursor></a-cursor>
     </a-entity>
@@ -44,7 +51,7 @@
     <a-entity bullets></a-entity>
 
     <!--Game Objects-->
-    <a-entity wire-fence></a-entity>
+    <a-entity wire-fence boxes></a-entity>
 
     <!--Ground-->
     <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="#FBF2D4"

@@ -45,6 +45,9 @@ AFRAME.registerComponent("bullets", {
         bullet.addEventListener("collide", this.removeBullet);
 
         scene.appendChild(bullet);
+
+        //shooting sound
+        this.shootSound()
       }
     });
   },
@@ -77,5 +80,9 @@ AFRAME.registerComponent("bullets", {
       scene.removeChild(element);
     }
   },
-});
 
+  shootSound: function () {
+    var entity = document.querySelector('#sound1')
+    entity.components.sound.playSound()
+  },
+});
