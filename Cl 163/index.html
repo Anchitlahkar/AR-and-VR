@@ -14,6 +14,7 @@
   <script src="./JS/shoot.js"></script>
   <script src="./JS/gameObjects.js"></script>
   <script src="./JS/playerMovement.js"></script>
+  <script src="./JS/enemyShoot.js"></script>
 </head>
 
 <body>
@@ -23,6 +24,7 @@
     <a-assets>
       <a-asset-item id="shooter" src="./models/shooter/gun.gltf"></a-asset-item>
       <a-asset-item id="collider" src="./models/Navigation/navmesh.gltf"></a-asset-item>
+      <a-asset-item id="tank" src="./models/tank/scene.gltf"></a-asset-item>
 
       <audio id="shoot" src="./sounds/shoot.mp3"></audio>
       <audio id="footstep" src="./sounds/footStep.mp3"></audio>
@@ -52,14 +54,43 @@
           scale="0.35 0.25242 0.23723" player-movement>
         </a-entity>
         <a-cursor></a-cursor>
+
+
+        <!--Text-->
+        <a-entity id="level1" position="-6 5.60396 -7.14276"
+          text="font: mozillavr; width: 5; height: 5; value: Level 1">
+        </a-entity>
+
+        <a-entity id="tanktargets" position="7 5.34428 -7.14429"
+          text="font: mozillavr; width: 10; height: 5; value: Shoot Tanks:">
+          <a-entity id="countTank" position="3 0 0" text="font: mozillavr; width: 10; height: 5; value: 2"></a-entity>
+        </a-entity>
+
+        <a-entity id="playerLife" position="-2 5.34428 -7.16344"
+          text="font: mozillavr; width: 10; height: 5; value: Player Life:">
+          <a-entity id="countLife" position="3 0 0" text="font: mozillavr; width: 10; height: 5; value: 2"></a-entity>
+        </a-entity>
+
+        <a-entity id="over" position="1 1 -3"
+          text="font: mozillavr; width:5; height: 5; value: Better Luck Next Time :(" visible="false">
+        </a-entity>
+
+        <a-entity id="completed" position="1.5 1 -3"
+          text="font: mozillavr; width:5; height: 5; value: Level Completed :)" visible="false">
+        </a-entity>
       </a-entity>
 
     </a-entity>
 
     <a-entity id="Navigation-Mesh" gltf-model="#collider" visible="false" nav-mesh></a-entity>
 
+
+
+
+
     <!--Bullets-->
     <a-entity bullets></a-entity>
+    <a-entity enemy-bullets></a-entity>
 
     <!--Game Objects-->
     <a-entity wire-fence boxes></a-entity>
@@ -69,6 +100,17 @@
       static-body visible="false">
     </a-plane>
 
+    <!--Enemy-->
+    <a-entity class="enemy" id="enemy1" rotation="0 90 0" gltf-model="#tank" position="-10 0 -15"
+      scale="0.015 0.015 0.015" animation-mixer static-body
+      animation="property: position; to: 10 0 -15; dur: 20000; easing: linear; loop: true; dir:alternate">
+
+    </a-entity>
+
+    <a-entity class="enemy" id="enemy2" rotation="0 90 0" gltf-model="#tank" position="-50 0 -40"
+      scale="0.015 0.015 0.015" animation-mixer static-body
+      animation="property: position; to: 10 0 -40; dur: 20000; easing: linear; loop: true; dir:alternate">
+    </a-entity>
 
   </a-scene>
 </body>
