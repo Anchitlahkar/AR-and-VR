@@ -8,6 +8,8 @@
     src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
   <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
   <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 
   <script src="./JS/shoot.js"></script>
   <script src="./JS/gameObjects.js"></script>
@@ -15,11 +17,12 @@
 </head>
 
 <body>
-  <a-scene id="scene">
+  <a-scene id="scene" inspector-plugin-recast>
 
     <!--Assets-->
     <a-assets>
       <a-asset-item id="shooter" src="./models/shooter/gun.gltf"></a-asset-item>
+      <a-asset-item id="collider" src="./models/Navigation/navmesh.gltf"></a-asset-item>
 
       <audio id="shoot" src="./sounds/shoot.mp3"></audio>
       <audio id="footstep" src="./sounds/footStep.mp3"></audio>
@@ -32,20 +35,28 @@
     </a-entity>
 
     <!--Sounds-->
-    <a-entity id="sound1" sound="src:#shoot; poolSize:2; autoplay: false;  volume:1; loop:false"></a-entity>
+    <a-entity id="sound1" sound="src:#shoot; poolSize:5; autoplay: false;  volume:1; loop:false"></a-entity>
     <a-entity id="sound2" sound="src:#footstep; poolSize:2; autoplay: false;  volume:4; loop:false"></a-entity>
 
     <!--Light-->
     <a-entity light="type: ambient; color: white; intensity:0.5"></a-entity>
     <a-entity light="type: directional; color: #EEE; intensity: 1" position="-1 1 0"></a-entity>
 
-    <!--Camera and Cursor-->
-    <a-entity id="camera" camera position="0 1.6 0" wasd-controls look-controls="pointerLockEnabled: false">
-      <a-entity id="weapon" gltf-model="#shooter" position="0 -4.4 3" rotation="0 180 0" scale="0.35 1 1"
-        player-movement>
+
+    <!-- Navigation Mesh -->
+    <a-entity id="camera-rig" movement-controls="speed:0.2; constrainToNavMesh:true;" position="0 1.6 0">
+
+      <!--Camera and Cursor-->
+      <a-entity id="camera" camera position="0 1 0" wasd-controls="false" look-controls="pointerLockEnabled: false">
+        <a-entity id="weapon" gltf-model="./models/shooter/gun.gltf" position="0 -1.36676 -1.12389" rotation="0 180 0"
+          scale="0.35 0.25242 0.23723" player-movement>
+        </a-entity>
+        <a-cursor></a-cursor>
       </a-entity>
-      <a-cursor></a-cursor>
+
     </a-entity>
+
+    <a-entity id="Navigation-Mesh" gltf-model="#collider" visible="false" nav-mesh></a-entity>
 
     <!--Bullets-->
     <a-entity bullets></a-entity>
