@@ -50,8 +50,9 @@
 
       <!--Camera and Cursor-->
       <a-entity id="camera" camera position="0 1 0" wasd-controls="false" look-controls="pointerLockEnabled: false">
-        <a-entity id="weapon" gltf-model="./models/shooter/gun.gltf" position="0 -1.36676 -1.12389" rotation="0 180 0"
-          scale="0.35 0.25242 0.23723" player-movement>
+        <a-entity id="weapon" gltf-model="#shooter" position="0 -4.4 3" rotation="0 180 0" scale="0.35 1 1"
+          body="type: static; mass: 5; shape: none;" static-body shape="shape: sphere; radius: 5; offset: 0 3 0;"
+          player-movement>
         </a-entity>
         <a-cursor></a-cursor>
 
