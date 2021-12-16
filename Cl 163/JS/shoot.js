@@ -58,6 +58,24 @@ AFRAME.registerComponent("bullets", {
     //element which is hit
     var elementHit = e.detail.body.el;
 
+    if (elementHit.id.includes("enemy")){
+      var countTankEl = document.querySelector("#countTank");
+      var tanksFired = parseInt(countTankEl.getAttribute("text").value);
+      tanksFired -= 1;
+
+      countTankEl.setAttribute("text", {
+        value: tanksFired
+      });
+
+      if (tanksFired === 0) {
+        var txt = document.querySelector("#completed");
+        txt.setAttribute("visible", true);       
+        
+      }
+      scene.removeChild(elementHit);
+    }
+
+
     if (elementHit.id.includes("box")) {
       elementHit.setAttribute("material", {
         opacity: 1,
