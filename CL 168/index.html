@@ -10,10 +10,15 @@
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
   <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
   <script src="./JS/addButton.js"></script>
+  <script src="./JS/markerHandler.js"></script>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+
+  <!-- SweetAlert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- Local StyleSheet -->
 
@@ -36,24 +41,30 @@
       <a-asset-item id="pizza-model" src="./assets/pizza/scene.gltf"></a-asset-item>
     </a-assets>
 
-    <a-marker id="pizza-marker" type="pattern" url="assets/dish-markers/pattern-pizza.patt" cursor="rayOrigin: mouse">
 
+    <a-marker id="pizza-marker" type="pattern" url="assets/dish-markers/pattern-pizza.patt" cursor="rayOrigin: mouse"
+      marker-handler>
 
       <a-entity id="pizza-3D-model" position="-2 0 0" scale="0.05 0.05 0.05" gltf-model="#pizza-model" gesture-handler>
-
       </a-entity>
-      <!--Ingredients-->
 
+
+      <!--Ingredients-->
       <a-plane position="0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
 
         <a-plane position="0 0.89 0.02" width="1.49" height="0.3" rotation="0 0 0" color="#F0C30F">
+
           <a-entity position="0 0 0.1" rotation="0 0 0"
-            text="font:monoid;value:PIZZA MARGHERITA;color:black;width: 1.8;height:1;align:center;"></a-entity>
+            text="font:monoid;value:PIZZA MARGHERITA;color:black;width: 1.8;height:1;align:center;">
+          </a-entity>
+
         </a-plane>
+
         <a-entity position="0 0 0.1" rotation="0 0 0"
           text="color: black; align: center; width: 2; font: monoid;
              value: Tomato sauce\n\nMozzarella cheese\n\nParmesan cheese (optional)\n\nFresh Basil\n\nOlive oil\n\nBlack pepper (optional)">
         </a-entity>
+
       </a-plane>
 
     </a-marker>
