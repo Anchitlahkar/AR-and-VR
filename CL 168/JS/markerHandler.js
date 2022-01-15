@@ -81,11 +81,17 @@ AFRAME.registerComponent("marker-handler", {
         });
       });
 
-      orderButton.addEventListener("click", function () {
+      orderButton.addEventListener("click", () => {
+        var tNumber;
+        tableNumber <= 9 ? (tNumber = `T0${tableNumber}`) : `T${tableNumber}`;
+        this.handleOrder(tNumber, dish);
+
         swal({
           icon: "https://i.imgur.com/4NZ6uLY.jpg",
-          title: "Thanks for order",
-          text: "Order will be serverd soon",
+          title: "Thanks For Order !",
+          text: "Your order will serve soon on your table!",
+          timer: 2000,
+          buttons: false
         });
       });
     }
@@ -114,5 +120,40 @@ AFRAME.registerComponent("marker-handler", {
     }).then((inputValue) => {
       tableNumber = inputValue;
     });
+  },
+
+  handleOrder: function (tNumber, dish) {
+    //reading current table order details
+    firebase
+      .firestore()
+      .collection("tables")
+      .doc(tNumber)
+      .get()
+      .then((doc) => {
+        var details = doc.data();
+
+        if (details["current_orders"][dish.id]) {
+          //Increasing the current quantity
+
+          details["current_orders"][dish.id]["quantity"] += 1;
+
+          //Calculating Subtotal of item
+          var currentQuantity = details["current_orders"][dish.id]["quantity"];
+
+          details["current_orders"][dish.id]["subtotal"] =
+            currentQuantity * dish.price;
+        } else {
+          details["current_orders"][dish.id] = {
+            item: dish.dish_name,
+            price: dish.price,
+            quantity: 1,
+            subtotal: dish.price * 1,
+          };
+        }
+        details.total_bill += dish.price;
+
+        //Updating db
+        firebase.firestore().collection("tables").doc(doc.id).update(details);
+      });
   },
 });
