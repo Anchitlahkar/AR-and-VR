@@ -9,6 +9,7 @@ AFRAME.registerComponent("marker-handler", {
     }
     // Do something when component first attached.
     this.el.addEventListener("markerFound", () => {
+      // alert("MarkerFound")
       if (tableNumber !== null) {
         var markerId = this.el.id;
 
@@ -71,6 +72,7 @@ AFRAME.registerComponent("marker-handler", {
 
       var ratingButton = document.getElementById("rating-button");
       var orderButton = document.getElementById("order-button");
+      var orderSummaryButton = document.getElementById("order-summary-button");
 
       //handling click events
       ratingButton.addEventListener("click", function () {
@@ -91,8 +93,12 @@ AFRAME.registerComponent("marker-handler", {
           title: "Thanks For Order !",
           text: "Your order will serve soon on your table!",
           timer: 2000,
-          buttons: false
+          buttons: false,
         });
+      });
+
+      orderSummaryButton.addEventListener("click", () => {
+        this.handleOrderSummary();
       });
     }
   },
@@ -155,5 +161,25 @@ AFRAME.registerComponent("marker-handler", {
         //Updating db
         firebase.firestore().collection("tables").doc(doc.id).update(details);
       });
+  },
+
+  getOrderSummary: async function (tNumber) {
+    return await firebase
+      .firestore()
+      .collection("tables")
+      .doc(tNumber)
+      .get()
+      .then((doc) => doc.data());
+  },
+
+  handleOrderSummary: async function () {
+    //Getting Table Number
+
+    var tNumber ;
+    tableNumber <= 9 ? (tNumber = `T0${tableNumber}`) : `T${tableNumber}`;
+
+    //Getting Order Summary from database
+    var orderSummary = await this.getOrderSummary(tNumber);
+
   },
 });
