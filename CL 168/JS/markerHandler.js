@@ -76,13 +76,7 @@ AFRAME.registerComponent("marker-handler", {
       var payButton = document.getElementById("pay-button");
 
       //handling click events
-      ratingButton.addEventListener("click", function () {
-        swal({
-          icon: "warning",
-          title: "Rate Dish",
-          text: "Work In progress",
-        });
-      });
+      ratingButton.addEventListener("click", () => this.handleRatings(dish));
 
       orderButton.addEventListener("click", () => {
         var tNumber;
@@ -274,19 +268,76 @@ AFRAME.registerComponent("marker-handler", {
     tableNumber <= 9 ? (tNumber = `T0${tableNumber}`) : `T${tableNumber}`;
 
     //Resetting current orders and total bill
-    firebase.firestore().collection("tables").doc(tNumber).update({
-      current_Orders: {},
-      total_bill: 0,
-    })
-    .then(()=>{
-      swal({
-        icon: "success",
-        title: "Thanks For Paying !",
-        text: "We Hope You Enjoyed Your Food !!",
-        timer: 2500,
-        buttons: false
+    firebase
+      .firestore()
+      .collection("tables")
+      .doc(tNumber)
+      .update({
+        current_Orders: {},
+        total_bill: 0,
+      })
+      .then(() => {
+        swal({
+          icon: "success",
+          title: "Thanks For Paying !",
+          text: "We Hope You Enjoyed Your Food !!",
+          timer: 2500,
+          buttons: false,
+        });
       });
-    })
+  },
 
+  handleRatings: function (dish) {
+    var tNumber;
+    tableNumber <= 9 ? (tNumber = `T0${tableNumber}`) : `T${tableNumber}`;
+
+    // Getting Order Summary from database
+    var orderSummary = await this.getOrderSummary(tNumber);
+
+    var currentOrders = Object.keys(orderSummary.current_orders);
+
+    if (currentOrders.length > 0 && currentOrders === dish.id) {
+      // Close Modal
+      document.getElementById("rating-modal-div").style.display = "flex";
+      document.getElementById("rating-input").value = "0";
+      document.getElementById("feedback-input").value = "";
+
+      //Submit button click event
+      var saveRatingButton = document.getElementById("save-rating-button");
+      saveRatingButton.addEventListener("click", () => {
+        document.getElementById("rating-modal-div").style.display = "none";
+
+        //Get the input value(Review & Rating)
+        var rating = document.getElementById("rating-input").value;
+        var feedback = document.getElementById("feedback-input").value;
+
+        //Update db
+        firebase
+          .firestore()
+          .collection("dishes")
+          .doc(dish.id)
+          .update({
+            last_review: feedback,
+            last_rating: rating,
+          })
+          .then(() => {
+            swal({
+              icon: "success",
+              title: "Thanks For Rating!",
+              text: "We Hope You Like Dish !!",
+              timer: 2500,
+              buttons: false,
+            });
+          });
+      });
+    } else {
+      swal({
+        icon: "warning",
+        title: "Oops!",
+        text: "No dish found to give ratings!!",
+        timer: 2500,
+        buttons: false,
+      });
+    }
   },
 });

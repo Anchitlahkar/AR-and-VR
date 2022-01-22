@@ -7,7 +7,7 @@ AFRAME.registerComponent("create-buttons", {
     // 1. Create the button
     var button1 = document.createElement("button");
 
-    button1.innerHTML = "Rate Us";
+    button1.innerHTML = "Rate Dish";
     button1.setAttribute("id", "rating-button");
     button1.setAttribute("class", "btn btn-warning");
 
