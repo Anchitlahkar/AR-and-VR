@@ -1,25 +1,25 @@
 AFRAME.registerComponent("atoms", {
-  init: async function() {
+  init: async function () {
     var compounds = await this.getCompounds();
 
     var barcodes = Object.keys(compounds);
 
-    barcodes.map(barcode => {
+    barcodes.map((barcode) => {
       var element = compounds[barcode];
       this.createAtoms(element);
     });
   },
-  getCompounds: function() {
+  getCompounds: function () {
     return fetch("js/compoundList.json")
-      .then(res => res.json())
-      .then(data => data);
+      .then((res) => res.json())
+      .then((data) => data);
   },
-  getElementColors: function() {
+  getElementColors: function () {
     return fetch("js/elementColors.json")
-      .then(res => res.json())
-      .then(data => data);
+      .then((res) => res.json())
+      .then((data) => data);
   },
-  createAtoms: async function(element) {
+  createAtoms: async function (element) {
     var elementName = element.element_name;
     var barcodeValue = element.barcode_value;
     var numOfElectron = element.number_of_electron;
@@ -48,11 +48,11 @@ AFRAME.registerComponent("atoms", {
     card.setAttribute("geometry", {
       primitive: "plane",
       width: 1,
-      height: 1
+      height: 1,
     });
 
     card.setAttribute("material", {
-      src: `./assets/atom_cards/card_${elementName}.png`
+      src: `./assets/atom_cards/card_${elementName}.png`,
     });
     card.setAttribute("position", { x: 0, y: 0, z: 0 });
     card.setAttribute("rotation", { x: -90, y: 0, z: 0 });
@@ -66,7 +66,7 @@ AFRAME.registerComponent("atoms", {
     nucleus.setAttribute("id", `nucleus-${elementName}`);
     nucleus.setAttribute("geometry", {
       primitive: "sphere",
-      radius: nucleusRadius
+      radius: nucleusRadius,
     });
 
     nucleus.setAttribute("material", "color", colors[elementName]);
@@ -83,7 +83,7 @@ AFRAME.registerComponent("atoms", {
       width: 3,
       color: "black",
       align: "center",
-      value: elementName
+      value: elementName,
     });
 
     nucleus.appendChild(nuclesName);
@@ -97,23 +97,23 @@ AFRAME.registerComponent("atoms", {
         primitive: "torus",
         arc: 360,
         radius: 0.28,
-        radiusTubular: 0.001
+        radiusTubular: 0.001,
       });
 
       orbit.setAttribute("material", {
         color: "#ff9e80",
-        opacity: 0.3
+        opacity: 0.3,
       });
       orbit.setAttribute("position", {
         x: 0,
         y: 1,
-        z: 0
+        z: 0,
       });
 
       orbit.setAttribute("rotation", {
         x: 0,
         y: orbitAngle,
-        z: 0
+        z: 0,
       });
 
       orbitAngle += 45;
@@ -129,20 +129,20 @@ AFRAME.registerComponent("atoms", {
       electron.setAttribute("id", `electron-${elementName}`);
       electron.setAttribute("geometry", {
         primitive: "sphere",
-        radius: 0.02
+        radius: 0.02,
       });
 
       electron.setAttribute("material", { color: "#0d47a1", opacity: 0.6 });
       electron.setAttribute("position", {
         x: 0.2,
         y: 0.2,
-        z: 0
+        z: 0,
       });
 
       electronGroup.setAttribute("rotation", {
         x: 0,
         y: 0,
-        z: electronAngle
+        z: electronAngle,
       });
 
       electronAngle += 65;
@@ -154,13 +154,13 @@ AFRAME.registerComponent("atoms", {
         to: `0 0 -360`,
         loop: "true",
         dur: 3500,
-        easing: "linear"
+        easing: "linear",
       });
     }
 
     // adding compounds
     var compounds = element.compounds;
-    compounds.map(item => {
+    compounds.map((item) => {
       var compound = document.createElement("a-entity");
       compound.setAttribute("id", `${item.compound_name}-${barcodeValue}`);
       compound.setAttribute("visible", false);
@@ -171,11 +171,11 @@ AFRAME.registerComponent("atoms", {
       compoundCard.setAttribute("geometry", {
         primitive: "plane",
         width: 1.2,
-        height: 1.7
+        height: 1.7,
       });
 
       compoundCard.setAttribute("material", {
-        src: `./assets/compound_cards/card_${item.compound_name}.png`
+        src: `./assets/compound_cards/card_${item.compound_name}.png`,
       });
       compoundCard.setAttribute("position", { x: 0, y: 0, z: 0.2 });
       compoundCard.setAttribute("rotation", { x: -90, y: 0, z: 0 });
@@ -188,7 +188,7 @@ AFRAME.registerComponent("atoms", {
         n.setAttribute("id", `compound-nucleus-${m}`);
         n.setAttribute("geometry", {
           primitive: "sphere",
-          radius: 0.2
+          radius: 0.2,
         });
         n.setAttribute("material", "color", colors[m]);
         n.setAttribute("position", { x: posX, y: 1, z: 0 });
@@ -205,11 +205,11 @@ AFRAME.registerComponent("atoms", {
           width: 3,
           color: "black",
           align: "center",
-          value: m
+          value: m,
         });
 
         n.appendChild(nuclesName);
       });
     });
-  }
+  },
 });
