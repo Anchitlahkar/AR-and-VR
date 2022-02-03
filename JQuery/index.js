@@ -68,6 +68,25 @@ $(document).ready(function () {
   displayStory();
 });
 
+$(function () {
+  $(".input_field").keyup(function(){
+      let id = $(this).attr("id")
+      let input_number = id.split("_")[1]
+      //Syntax: $(selector).eq(index)
+      //$(“.rep_input”).eq(input_number)
+      //$(“.rep_input”).eq(input_number).html()
+
+      $(".rep_input").eq(input_number).html($(this).val())
+
+
+  })
+
+  $("#next_story").click(function(){
+    displayStory()
+  })
+
+});
+
 function displayStory() {
   //Get random story
   const story = stories[Math.floor(Math.random() * stories.length)];
@@ -91,9 +110,7 @@ function displayStory() {
 
   $("#bank_words").empty();
   for (let i = 0; i < story.words.length; i++) {
-      let html = `<button class="word_bank_button">${story.words[i]}</button>`
-      $("#bank_words").append(html)
+    let html = `<button class="word_bank_button">${story.words[i]}</button>`;
+    $("#bank_words").append(html);
   }
-  
-  
 }
