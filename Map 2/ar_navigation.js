@@ -49,6 +49,7 @@ function render_elements() {
 
                 if (i > 0) {
                     $("#scene_container").append(
+                        `
                         <a-entity gps-entity-place="latitude: ${steps[i].maneuver.location[1]}; longitude: ${steps[i].maneuver.location[0]}">
                             <a-image
                                 name="${instruction}"
@@ -66,6 +67,7 @@ function render_elements() {
                             </a-entity>
 
                         </a-entity>
+                        `
                     )
                 }
                 else {
