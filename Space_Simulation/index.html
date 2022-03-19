@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Simulation</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-sky color="#000"></a-sky>
+
+        <a-assets>
+            <a-assets-item id="spaceShip" src="./models/source/X-70B Phantom-class prototype.obj">
+
+            </a-assets-item>
+        </a-assets>
+
+        <a-camera position="0 0 -0.04933" camera="" rotation="" look-controls="" wasd-controls=""
+            data-aframe-inspector-original-camera="" id="Player">
+            <a-entity obj-model="obj: ./models/source/X-70B Phantom-class prototype.obj" position="0 0 2.4693"
+                rotation="2.923803628552591 0 0" scale="0.01 0.01 0.01" id="SpaceShip"></a-entity>
+        </a-camera>
+    </a-scene>
+</body>
+
+</html>
