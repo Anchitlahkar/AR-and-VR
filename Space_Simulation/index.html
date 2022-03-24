@@ -7,23 +7,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Simulation</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="./JS/playerMovement.js"></script>
 </head>
 
 <body>
-    <a-scene>
-        <a-sky color="#000"></a-sky>
+    <a-scene background="color:#000">
+        <!-- sky -->
+        <!-- <a-sky color="#000"></a-sky> -->
 
+        <!-- assets -->
         <a-assets>
             <a-assets-item id="spaceShip" src="./models/source/X-70B Phantom-class prototype.obj">
-
             </a-assets-item>
         </a-assets>
 
-        <a-camera position="0 0 -0.04933" camera="" rotation="" look-controls="" wasd-controls=""
-            data-aframe-inspector-original-camera="" id="Player">
+        <!-- player and spaceship -->
+        <a-camera position="0 0 -0.04933" id="player" movement>
+            <a-entity id="camera-cursor" cursor position="0 0 -2.5"
+                geometry="primitive: ring; radiusInner:0.02; radiusOuter: 0.03" material="color: #fff; shader: flat">
+            </a-entity>
             <a-entity obj-model="obj: ./models/source/X-70B Phantom-class prototype.obj" position="0 0 2.4693"
                 rotation="2.923803628552591 0 0" scale="0.01 0.01 0.01" id="SpaceShip"></a-entity>
         </a-camera>
+
+
+
+        <!-- sun -->
+        <a-sphere color="yellow" position="0 0 -4760.96287" scale="500 500 500" id="sun" material="" geometry="">
+        </a-sphere>
+
+
+        <!-- planets -->
+        <a-entity id="planets">
+
+            <!-- mercury -->
+            <a-entity position="0 0 -5500"
+                animation="property: rotation; to:0 360 0; easing:linear; loop:true; dur:80000;">
+                <a-sphere color="grey" position="0 0 -3054.81697" scale="18 18 18" id="mercury">
+                </a-sphere>
+            </a-entity>
+
+
+            <!-- venus -->
+            <a-entity position="0 0 -4760"
+                animation="property: rotation; to:0 -360 0; easing:linear; loop:true; dur:160000;">
+                <a-sphere color="brown" position="0 0 3600" scale="40 40 40" id="venus" material="" geometry="">
+                </a-sphere>
+            </a-entity>
+
+            <!-- earth -->
+            <a-entity position="0 0 -4720"
+                animation="property: rotation; to:0 360 0; easing:linear; loop:true; dur:240000;">
+                <a-sphere color="blue" position="0 0 5000" scale="50 50 50" id="venus" material="" geometry="">
+                </a-sphere>
+            </a-entity>
+
+            <!-- mars -->
+            <a-entity position="0 0 -4720"
+                animation="property: rotation; to:0 360 0; easing:linear; loop:true; dur:320000;">
+                <a-sphere color="red" position="0 0 -6500" scale="50 50 50" id="venus" material="" geometry="">
+                </a-sphere>
+            </a-entity>
+
+        </a-entity>
     </a-scene>
 </body>
 
