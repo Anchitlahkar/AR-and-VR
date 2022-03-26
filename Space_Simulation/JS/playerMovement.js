@@ -11,11 +11,6 @@ AFRAME.registerComponent('movement', {
                 var player = this.el
                 var playerObject = document.querySelector("#player").object3D
 
-                player.setAttribute("dynamic-body", {
-                    shape: "sphere",
-                    mass: "0",
-                });
-
                 var direction = new THREE.Vector3();
                 playerObject.getWorldDirection(direction);
 
